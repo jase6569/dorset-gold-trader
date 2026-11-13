@@ -43,7 +43,7 @@ const f = n => "£" + n.toFixed(2);
 async function j(u){ const r = await fetch(u, {cache: "no-store"}); if (!r.ok) throw 0; return r.json(); }
 async function run(){
   let w;
-  try { w = await j("widget.json?t=" + Date.now()); } catch(e){ document.getElementById("c").textContent = "Offline"; return; }
+  try { w = await j("../gold-sell-timer/widget.json?t=" + Date.now()); } catch(e){ document.getElementById("c").textContent = "Offline"; return; }
   let price = w.price_g, live = false;
   try {
     const [xau, fx] = await Promise.all([j("https://api.gold-api.com/price/XAU").then(d => d.price), j("https://open.er-api.com/v6/latest/GBP").then(d => d.rates.USD)]);

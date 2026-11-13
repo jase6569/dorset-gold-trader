@@ -34,6 +34,7 @@ import java.util.TimeZone;
 public class GoldWidget extends AppWidgetProvider {
 
     static final String APP_URL = "https://jase6569.github.io/dorset-gold-trader/";
+    static final String DATA_URL = "https://jase6569.github.io/gold-sell-timer/";
     static final String ACTION_REFRESH = "uk.jase.goldtrader.REFRESH";
     static final double OZ = 31.1034768;
     static final String[] CALLS = {"Hold", "Hold: getting close", "Sell about a quarter", "Strong sell: sell more"};
@@ -146,7 +147,7 @@ public class GoldWidget extends AppWidgetProvider {
         JSONObject w = null;
         String err = null;
         try {
-            w = new JSONObject(get(APP_URL + "widget.json?t=" + System.currentTimeMillis()));
+            w = new JSONObject(get(DATA_URL + "widget.json?t=" + System.currentTimeMillis()));
             prefs.edit().putString("widget", w.toString()).apply();
         } catch (Exception e) {
             err = reason(e);

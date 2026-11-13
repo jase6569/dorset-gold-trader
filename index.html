@@ -1035,14 +1035,14 @@ if (store.get("target")) $("aT").value = store.get("target");
 { const b = buySettings(); if (b.m) $("bM").value = b.m; if (b.c) $("bC").value = b.c; }
 if (!store.get("seenGuide")) $("welcome").style.display = "block";
 (async () => {
-  try { const dj = await fetchJSON("data.json?t=" + Date.now()); daily = dj.daily; dataUpdated = dj.updated; } catch(e){}
-  try { news = await fetchJSON("news.json?t=" + Date.now()); } catch(e){}
+  try { const dj = await fetchJSON("../gold-sell-timer/data.json?t=" + Date.now()); daily = dj.daily; dataUpdated = dj.updated; } catch(e){}
+  try { news = await fetchJSON("../gold-sell-timer/news.json?t=" + Date.now()); } catch(e){}
   renderStock();
   await refresh();
   setInterval(refresh, 60000);
   setInterval(async () => {
-    try { const dj = await fetchJSON("data.json?t=" + Date.now()); daily = dj.daily; dataUpdated = dj.updated; } catch(e){}
-    try { news = await fetchJSON("news.json?t=" + Date.now()); } catch(e){}
+    try { const dj = await fetchJSON("../gold-sell-timer/data.json?t=" + Date.now()); daily = dj.daily; dataUpdated = dj.updated; } catch(e){}
+    try { news = await fetchJSON("../gold-sell-timer/news.json?t=" + Date.now()); } catch(e){}
     analyse();
   }, 30 * 60000);
 })();
