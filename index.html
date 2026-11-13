@@ -72,6 +72,13 @@
   .hist td:last-child{font-size:13px}
   .hist tr.cur td{background:rgba(212,168,67,.08)}
   details summary{cursor:pointer;color:var(--gold2);font-weight:600;padding:8px 0}
+  .lot{border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 10px;background:#0d1426}
+  .lot .hd{display:flex;justify-content:space-between;gap:8px;font-weight:700}
+  .lot .sm{font-size:13px;color:var(--muted);margin-top:2px}
+  .lot .row{display:flex;justify-content:space-between;font-size:14px;margin-top:6px}
+  .lot details summary{font-size:13px;padding:6px 0 0}
+  .lot .it{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-top:1px solid var(--line)}
+  .pos{color:var(--up)} .neg{color:var(--down)}
   .warn{border:1px solid #8a5a20;background:rgba(227,163,59,.08);border-radius:12px;padding:12px;margin-top:12px}
   .tv{border-radius:12px;overflow:hidden}
   .rng{display:flex;gap:6px;margin:0 2px 8px}
@@ -272,6 +279,7 @@
       <li>Set up the phone alerts once (Alerts tab).</li>
       <li>When an alert arrives, or you're curious, open the app and read <b>Should I sell?</b> on the Advice page.</li>
       <li>Follow what it says. Sell in stages, never everything at once.</li>
+      <li>If you buy gold in all the time, set up <b>Buying in</b> on the My gold tab (section 5). Then every Friday it tells you how many grams to send to the refiner.</li>
     </ol>
   </div>
 
@@ -331,14 +339,49 @@
   </div>
 
   <div class="card">
-    <h2>5. The other pages</h2>
+    <h2>5. If you buy gold in all the time</h2>
+    <p style="margin-top:0">Most of your profit comes from the gap between what you pay customers and what the refiner pays you. You only lock that in when you sell. Every week the gold sits in the safe, you're betting on the price. <b>Buying in</b> on the My gold tab keeps that bet small and tells you exactly what to send off.</p>
+    <div class="sub">Set it up once</div>
+    <ol>
+      <li>Go to <b>My gold</b> and add the gold you hold now: weight, carat and a short note. New items get today's date, so the app knows which is oldest.</li>
+      <li>In <b>Buying in</b>, enter roughly how many grams you buy in a month (all carats together).</li>
+      <li>Enter the most stock you're happy to hold, in months of buying. Start with 2.</li>
+      <li>In <b>Quick check</b>, set <b>Buyer pays</b> to your refiner's real percentage, so the £ figures are right.</li>
+    </ol>
+    <div class="sub">Each week</div>
+    <ol>
+      <li>Add what you bought in as you go, or once a week.</li>
+      <li>On Friday (the summary alert reminds you), open <b>My gold</b>. It shows how many grams of each carat to send to the refiner, oldest gold first, and roughly what you'll be paid.</li>
+      <li>If it shows a <b>timing tip</b>, a big US or UK announcement is due. Send the batch after the result is out.</li>
+      <li>Once it's gone, tap <b>I've sent this batch</b>. The grams come off your list, so next week's figures are right.</li>
+    </ol>
+    <div class="sub">How much stock it lets you keep</div>
+    <table>
+      <tr><td><b>Steep slide</b><div class="muted">Gold is more than 10% below its 40-week average. Only two slides like this since 2004: 2013 kept falling another 10–15%, 2021 recovered. Too uncertain to build stock on.</div></td><td>About 1 month of buying</td></tr>
+      <tr><td><b>Normal</b><div class="muted">Gold isn't stretched or sliding. From here gold was lower 6 months later only about 26–30% of the time, so holding some back has usually paid.</div></td><td>Up to your limit</td></tr>
+      <tr><td><b>Sell zone</b><div class="muted">Gold is stretched well above normal.</div></td><td>About 1 month, and sell at least ¼</td></tr>
+      <tr><td><b>Strong sell zone</b><div class="muted">Gold was lower 6 months later 87% of the time from here.</div></td><td>Small reserve: ¼ of stock, at most ½ a month</td></tr>
+    </table>
+    <p>You'll get a phone alert when a steep slide starts or ends, and the Friday summary says which of these applies.</p>
+    <div class="sub">Good habits</div>
+    <ol>
+      <li><b>Buy in at today's price, not last week's</b>, especially when gold is falling.</li>
+      <li><b>Sort by carat before selling.</b> Mixed lots tend to get paid at the lowest carat.</li>
+      <li><b>Get quotes from two or three refiners now and then.</b> A few percent better payout is worth more than most timing calls.</li>
+      <li><b>Keep one stock list.</b> Each phone keeps its own list, so if two people share the same stock, only one of you should keep it.</li>
+    </ol>
+    <p class="muted">Selling into a sudden drop isn't part of the plan. In past UK prices, new 3-month lows were more often followed by a bounce than by a further fall, so the app doesn't tell you to panic-sell on a dip. It just stops you piling up stock in a long slide.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. The other pages</h2>
     <p style="margin-top:0"><b>Alerts.</b> Phone alert setup, plus your own target price. Enter the price per gram you'd be happy with, and the app lights up when gold reaches it. This only works while the app is open. The phone alerts work all the time.</p>
     <p><b>Chart.</b> A weekly chart of gold in pounds with the 10-week and 40-week averages. The sell signal measures how far the price has stretched above the 40-week line.</p>
     <p><b>My gold.</b> Add the gold you're holding (weight, carat, and what you paid if you like). It shows what it's all worth today and your profit. When a sell alert comes, it works out exactly how many grams of each carat to sell. If you buy gold in all the time, fill in <b>Buying in</b>: tell it how much you buy in a month and the most stock you want to hold, and every week it tells you how many grams of each carat to send to the refiner, oldest first. It's saved on your phone only. Below that, a <b>quick check</b> works out the value of any single piece.</p>
   </div>
 
   <div class="card">
-    <h2>6. How the advice works</h2>
+    <h2>7. How the advice works</h2>
     <p style="margin-top:0">The Advice page has a <b>"How this decision was made"</b> section that shows every step with today's real numbers: the price, the 40-week average, the stretch, the 4-week change, which rule matched, and the 22-year evidence behind it. There's also a <b>decision history</b> for the last 6 months. If anyone asks "why did it say that?", that's where to look.</p>
     <p style="margin-top:0">The app looks at one thing: <b>how far gold has stretched above its 40-week average</b>, and whether it has started to turn down. That was the only measure that worked reliably when tested on 22 years of UK gold prices (2004 to today), and it held up in both 2005–2015 and 2016–2026. Popular rules like "RSI over 70" or "near its high" didn't hold up for gold, so they're not used.</p>
     <p>The sell zone prices move slowly as the 40-week average changes, so check them now and then rather than writing them down once.</p>
@@ -349,6 +392,7 @@
     <p style="margin-top:0"><b>The price looks a little different from my buyer's.</b> The app shows the market (spot) price. Buyers pay a percentage of it and some quote differently, so use the Value page with your buyer's percentage.</p>
     <p><b>It says "Live feed unavailable".</b> The app is showing the last saved price and will keep retrying every minute. The advice still works.</p>
     <p><b>I haven't had an alert for ages.</b> That's normal. Alerts only come when gold nears or enters the sell zone, plus the Friday summary. If even the Friday summary stops, check you're still subscribed in ntfy.</p>
+    <p><b>Buying in says send gold, but the main call says hold. Which is right?</b> Both. The main call is about a private holding you can keep for as long as you like. Buying in is for a shop that's always buying more. There, the safe way is to keep stock to a limit and send the rest, even when gold is cheap.</p>
     <p><b>Is it always right?</b> No. It's based on what has happened before, and big world events can change things fast. It's a strong guide, not a guarantee, and it isn't regulated financial advice. The decision is always yours.</p>
   </div>
 </section>
@@ -374,8 +418,25 @@
       <div><label>What is it? (optional)</label><input id="sN" type="text" placeholder="e.g. broken chains"></div>
       <div><label>What you paid, £ (optional)</label><input id="sP" type="number" inputmode="decimal" placeholder="e.g. 2500"></div>
     </div>
+    <label>Date bought</label>
+    <input id="sD" type="date">
     <button class="btn" id="sAdd">Add to my gold</button>
-    <div id="stockList" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card" id="lotsCard">
+    <h2>My lots</h2>
+    <div class="tabs" id="lotTabs" style="margin-bottom:10px">
+      <button data-v="w">Week</button>
+      <button class="on" data-v="m">Month</button>
+      <button data-v="a">Every item</button>
+    </div>
+    <div id="stockList"></div>
+    <div class="grid2" style="margin-top:12px">
+      <button class="btn ghost" id="bkSave" style="margin-top:0">Download backup</button>
+      <button class="btn ghost" id="bkLoad" style="margin-top:0">Restore backup</button>
+    </div>
+    <input id="bkFile" type="file" accept=".json,application/json" style="display:none">
+    <p class="muted" id="bkMsg" style="margin:8px 0 0">Your gold is saved on this phone only. Download a backup now and then, and keep it somewhere safe, like your email or Google Drive.</p>
   </div>
 
   <div class="card" id="stockSum" style="display:none">
@@ -852,18 +913,116 @@ $("sAdd").onclick = () => {
   const w = parseFloat($("sG").value);
   if (!(w > 0)) { $("sG").focus(); return; }
   const a = stock();
-  a.push({w, k: $("sK").value, n: $("sN").value.trim(), paid: parseFloat($("sP").value) || 0, d: new Date().toISOString().slice(0, 10)});
+  a.push({w, k: $("sK").value, n: $("sN").value.trim(), paid: parseFloat($("sP").value) || 0, d: $("sD").value || new Date().toISOString().slice(0, 10)});
   $("sG").value = ""; $("sN").value = ""; $("sP").value = "";
   saveStock(a);
 };
-function delStock(i){ const a = stock(); a.splice(i, 1); saveStock(a); }
+try { $("sD").value = new Date().toISOString().slice(0, 10); } catch(e){}
+function delStock(i){ const a = stock(); if (!confirmDel(i, a)) return; a.splice(i, 1); saveStock(a); }
+function confirmDel(i, a){ const x = a[i]; const btn = document.getElementById("del" + i); if (btn && btn.dataset.armed){ return true; } if (btn){ btn.dataset.armed = "1"; btn.textContent = "Tap again to delete"; btn.style.color = "var(--down)"; setTimeout(() => { if (btn){ delete btn.dataset.armed; btn.textContent = "✕"; btn.style.color = "var(--muted)"; } }, 3000); } return false; }
+
+/* ---- lots: group purchases by week or month ---- */
+let lotView = store.get("lotView") || "m";
+document.querySelectorAll("#lotTabs button").forEach(b => {
+  b.classList.toggle("on", b.dataset.v === lotView);
+  b.onclick = () => { lotView = b.dataset.v; store.set("lotView", lotView); document.querySelectorAll("#lotTabs button").forEach(x => x.classList.toggle("on", x === b)); renderStock(); };
+});
+function lotKey(d, view){
+  if (!d) return ["0000", "Earlier (no date)"];
+  const dt = new Date(d + "T12:00:00Z");
+  if (view === "m") return [d.slice(0, 7), dt.toLocaleDateString("en-GB", {month: "long", year: "numeric"})];
+  const mon = new Date(dt); mon.setUTCDate(mon.getUTCDate() - (mon.getUTCDay() + 6) % 7);
+  const sun = new Date(mon); sun.setUTCDate(sun.getUTCDate() + 6);
+  const f = x => x.toLocaleDateString("en-GB", {day: "numeric", month: "short"});
+  return [mon.toISOString().slice(0, 10), "Week " + f(mon) + " – " + f(sun) + " " + sun.getUTCFullYear()];
+}
+function lotStats(items, pay){
+  const pure = items.reduce((t, x) => t + x.w * parseFloat(x.k), 0);
+  const paidItems = items.filter(x => x.paid > 0);
+  const cost = paidItems.reduce((t, x) => t + x.paid, 0);
+  const purePaid = paidItems.reduce((t, x) => t + x.w * parseFloat(x.k), 0);
+  const worth = gbpPerGram ? pure * gbpPerGram * pay : 0;
+  const worthPaid = gbpPerGram ? purePaid * gbpPerGram * pay : 0;
+  const be = purePaid > 0 ? cost / (purePaid * pay) : null;   // 24ct £/g needed to break even after the buyer's cut
+  const byCarat = {};
+  items.forEach(x => { byCarat[x.k] = (byCarat[x.k] || 0) + x.w; });
+  return {pure, cost, purePaid, worth, worthPaid, be, byCarat, all: paidItems.length === items.length, pnl: worthPaid - cost, pnlPct: cost ? (worthPaid - cost) / cost * 100 : null};
+}
+function caratText(byCarat){ return Object.entries(byCarat).map(([k, w]) => `${+w.toFixed(1)}g ${CT[k]}`).join(" · "); }
+function renderLots(a, pay){
+  if (!a.length) return '<p class="muted" style="margin:0">Nothing added yet. Add each purchase above, with the date you bought it.</p>';
+  const withIdx = a.map((x, i) => Object.assign({i}, x));
+  if (lotView === "a"){
+    return `<table>${withIdx.slice().reverse().map(x => {
+      const pure = x.w * parseFloat(x.k);
+      const val = gbpPerGram ? fmt(pure * gbpPerGram * pay, 0) : "";
+      return `<tr><td>${x.w}g ${CT[x.k]}${x.n ? " · " + esc(x.n) : ""}<div class="muted">${pure.toFixed(1)}g pure${x.paid ? " · paid " + fmt(x.paid, 0) : ""}${x.d ? " · " + new Date(x.d).toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"}) : ""}</div></td><td>${val} <a href="#" id="del${x.i}" onclick="delStock(${x.i});return false" style="color:var(--muted);margin-left:8px;text-decoration:none">✕</a></td></tr>`;
+    }).join("")}</table>`;
+  }
+  const groups = new Map();
+  withIdx.forEach(x => { const [k, label] = lotKey(x.d, lotView); if (!groups.has(k)) groups.set(k, {label, items: []}); groups.get(k).items.push(x); });
+  const zSell = sig ? g(sig.cur.s40 * 1.18) : null;
+  return [...groups.entries()].sort((p, q) => q[0].localeCompare(p[0])).map(([k, grp]) => {
+    const st = lotStats(grp.items, pay);
+    const pnlRow = st.cost ? `<div class="row"><span>${st.all ? "Profit / loss" : "Profit / loss (priced items)"}</span><span class="${st.pnl >= 0 ? "pos" : "neg"}">${st.pnl >= 0 ? "+" : "−"}${fmt(Math.abs(st.pnl), 0)} (${pc(st.pnlPct, 1)})</span></div>` : "";
+    const beRow = st.be ? `<div class="row"><span>Break-even price (24ct)</span><span>${fmt(st.be)}/g ${gbpPerGram ? (gbpPerGram >= st.be ? '<span class="pos">✓ in profit</span>' : '<span class="neg">below</span>') : ""}</span></div>` : "";
+    const atZone = (st.be && zSell && gbpPerGram < zSell) ? `<div class="row"><span>At the sell zone (${fmt(zSell)}/g)</span><span class="${zSell >= st.be ? "pos" : "neg"}">${zSell >= st.be ? "+" : "−"}${fmt(Math.abs(st.purePaid * zSell * pay - st.cost), 0)}</span></div>` : "";
+    return `<div class="lot">
+      <div class="hd"><span>${grp.label}</span><span>${gbpPerGram ? fmt(st.worth, 0) : ""}</span></div>
+      <div class="sm">${caratText(st.byCarat)} · ${st.pure.toFixed(1)}g pure${st.cost ? " · cost " + fmt(st.cost, 0) : ""}</div>
+      ${pnlRow}${beRow}${atZone}
+      <details><summary>${grp.items.length} item${grp.items.length === 1 ? "" : "s"}</summary>
+        ${grp.items.map(x => `<div class="it"><span>${x.w}g ${CT[x.k]}${x.n ? " · " + esc(x.n) : ""}${x.paid ? " · " + fmt(x.paid, 0) : ""}${x.d ? " · " + new Date(x.d).toLocaleDateString("en-GB", {day: "numeric", month: "short"}) : ""}</span><a href="#" id="del${x.i}" onclick="delStock(${x.i});return false" style="color:var(--muted);text-decoration:none">✕</a></div>`).join("")}
+      </details>
+    </div>`;
+  }).join("");
+}
+function sellOrder(a, pay){
+  // which lots to sell first: the most profitable first, and flag any that would sell at a loss
+  const groups = new Map();
+  a.forEach(x => { const [k, label] = lotKey(x.d, lotView === "a" ? "m" : lotView); if (!groups.has(k)) groups.set(k, {label, items: []}); groups.get(k).items.push(x); });
+  const rows = [...groups.values()].map(g2 => Object.assign({label: g2.label}, lotStats(g2.items, pay)));
+  const priced = rows.filter(r => r.be), unpriced = rows.filter(r => !r.be);
+  const win = priced.filter(r => gbpPerGram >= r.be).sort((p, q) => (q.pnlPct || 0) - (p.pnlPct || 0));
+  const lose = priced.filter(r => gbpPerGram < r.be);
+  if (!priced.length) return "";
+  return `<div class="sub">Which lots to sell first</div>
+    <table>${win.map((r, n) => `<tr><td>${n + 1}. ${r.label}<div class="muted">${caratText(r.byCarat)}</div></td><td class="pos">${pc(r.pnlPct, 1)}</td></tr>`).join("")}
+    ${lose.map(r => `<tr><td>Hold: ${r.label}<div class="muted">would sell at a loss until ${fmt(r.be)}/g</div></td><td class="neg">${pc(r.pnlPct, 1)}</td></tr>`).join("")}
+    ${unpriced.length ? `<tr><td colspan="2" class="muted">${unpriced.length} lot${unpriced.length === 1 ? "" : "s"} without a price paid, so profit can't be worked out.</td></tr>` : ""}</table>`;
+}
+
+/* ---- backup ---- */
+$("bkSave").onclick = () => {
+  try {
+    const data = JSON.stringify({app: "Gold Trader", saved: new Date().toISOString(), stock: stock()}, null, 1);
+    const url = URL.createObjectURL(new Blob([data], {type: "application/json"}));
+    const link = document.createElement("a");
+    link.href = url; link.download = "gold-trader-backup-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    $("bkMsg").textContent = "Backup downloaded (" + stock().length + " items). Keep it somewhere safe.";
+  } catch(e){ $("bkMsg").textContent = "Couldn't create the backup on this phone."; }
+};
+$("bkLoad").onclick = () => $("bkFile").click();
+$("bkFile").onchange = async () => {
+  const f = $("bkFile").files[0]; if (!f) return;
+  try {
+    const d = JSON.parse(await f.text());
+    if (!Array.isArray(d.stock)) throw 0;
+    const cur = stock();
+    const key = x => [x.w, x.k, x.paid, x.d, x.n].join("|");
+    const have = new Set(cur.map(key));
+    const added = d.stock.filter(x => !have.has(key(x)));
+    saveStock(cur.concat(added));
+    $("bkMsg").textContent = "Restored " + added.length + " item" + (added.length === 1 ? "" : "s") + " from your backup" + (d.stock.length > added.length ? " (skipped ones you already had)." : ".");
+  } catch(e){ $("bkMsg").textContent = "That file isn't a Gold Trader backup."; }
+  $("bkFile").value = "";
+};
+
 function renderStock(){
   const a = stock(), pay = (parseFloat($("cP").value) || 95) / 100;
-  $("stockList").innerHTML = a.length ? `<table>${a.map((x, i) => {
-    const pure = x.w * parseFloat(x.k);
-    const val = gbpPerGram ? fmt(pure * gbpPerGram * pay, 0) : "";
-    return `<tr><td>${x.w}g ${CT[x.k]}${x.n ? " · " + esc(x.n) : ""}<div class="muted">${pure.toFixed(1)}g pure gold${x.paid ? " · paid " + fmt(x.paid, 0) : ""}${x.d ? " · added " + new Date(x.d).toLocaleDateString("en-GB", {day: "numeric", month: "short"}) : ""}</div></td><td>${val} <a href="#" onclick="delStock(${i});return false" style="color:var(--muted);margin-left:8px;text-decoration:none">✕</a></td></tr>`;
-  }).join("")}</table>` : '<p class="muted" style="margin:0">Nothing added yet.</p>';
+  $("stockList").innerHTML = renderLots(a, pay);
   renderBuy();
   if (!a.length || !gbpPerGram){ $("stockSum").style.display = "none"; return; }
   $("stockSum").style.display = "block";
@@ -884,7 +1043,7 @@ function renderStock(){
   const split = Object.entries(byCarat).map(([k, w]) => `${Math.round(w * share)}g of your ${CT[k]}`).join(", ");
   $("stockPlan").innerHTML = share
     ? `<div class="verdict ${TIERS[t].cls}" style="margin:12px 0 0"><div class="call" style="font-size:19px">${TIERS[t].call}</div>
-        <div>For you that's about <b>${Math.round(share * 100)}%</b> of your gold: <b>${split}</b>. That's around <b>${(pure * share).toFixed(1)}g of pure gold, roughly ${fmt(net * share, 0)}</b> at ${Math.round(pay * 100)}%.</div></div>`
+        <div>For you that's about <b>${Math.round(share * 100)}%</b> of your gold: <b>${split}</b>. That's around <b>${(pure * share).toFixed(1)}g of pure gold, roughly ${fmt(net * share, 0)}</b> at ${Math.round(pay * 100)}%.</div></div>${sellOrder(a, pay)}`
     : `<div class="verdict t0" style="margin:12px 0 0"><div class="call" style="font-size:19px">${TIERS[t].call}</div>
         <div>No need to sell any yet. For reference, if gold reaches the <b>sell zone (${fmt(zSell)}/g)</b>, your gold would be worth about <b>${fmt(pure * zSell * pay, 0)}</b>, which is ${fmt(pure * (zSell - gbpPerGram) * pay, 0)} more than today. At that point, selling a quarter would mean about ${Object.entries(byCarat).map(([k, w]) => `${Math.round(w * 0.25)}g of your ${CT[k]}`).join(", ")}.</div></div>`;
 }
@@ -998,7 +1157,7 @@ function setZoneRange(y){
   zChart.timeScale().setVisibleRange({from: from.toISOString().slice(0, 10), to: to.toISOString().slice(0, 10)});
 }
 document.querySelectorAll("#rng button").forEach(b => b.onclick = () => setZoneRange(+b.dataset.y));
-document.querySelectorAll(".tabs").forEach(t => t.querySelectorAll("button").forEach(b => b.onclick = () => {
+document.querySelectorAll(".tabs[data-group]").forEach(t => t.querySelectorAll("button").forEach(b => b.onclick = () => {
   t.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
   const grp = t.dataset.group;
   document.querySelectorAll('[id^="' + grp + '-"]').forEach(v => v.classList.toggle("on", v.id === grp + "-" + b.dataset.v));
