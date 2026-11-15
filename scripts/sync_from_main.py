@@ -18,6 +18,28 @@ s = s.replace('fetchJSON("data.json?', 'fetchJSON("../gold-sell-timer/data.json?
 s = s.replace('fetchJSON("news.json?', 'fetchJSON("../gold-sell-timer/news.json?')
 s = s.replace('const MM_URL = "mastermelt.json";', 'const MM_URL = "../gold-sell-timer/mastermelt.json";')
 
+# Mike's own saved data: his keys are prefixed "dg:" so his app never shares data with Jase's on one phone
+MAIN_STORE = """const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} },
+  del(k){ try { localStorage.removeItem(k); } catch(e){} }
+};
+"""
+MIKE_STORE = '// Keys are prefixed so this app never shares saved data with other Gold Trader copies on the same phone.\nconst SP = "dg:";\nconst store = {\n  get(k){ try { let v = localStorage.getItem(SP + k); if (v === null && !localStorage.getItem(SP + "migrated")) { v = localStorage.getItem(k); } return v; } catch(e){ return null; } },\n  set(k,v){ try { localStorage.setItem(SP + k, v); } catch(e){} },\n  del(k){ try { localStorage.removeItem(SP + k); } catch(e){} }\n};\n// one-off: copy this app\'s earlier saved data into its own keys\ntry { if (!localStorage.getItem(SP + "migrated") && localStorage.getItem("buyingLog") === "1") localStorage.setItem(SP + "migrated", "1");  // a phone with Jase\'s own app: never copy his data\n  if (!localStorage.getItem(SP + "migrated")) { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (!k.startsWith(SP) && !k.includes(":") && localStorage.getItem(SP + k) === null) localStorage.setItem(SP + k, localStorage.getItem(k)); } localStorage.setItem(SP + "migrated", "1"); } } catch(e){}\n'
+assert MAIN_STORE in s, "main app's storage block changed: update sync_from_main.py"
+s = s.replace(MAIN_STORE, MIKE_STORE)
+
+# Mike's app is his alone: Buy log, Make more money and lot alerts always on, and lot alerts
+# go to his usual alert channel (Jase's go to a private one so Adam doesn't get them)
+for a, b in [('const PRO_ON = () => store.get("buyingLog") === "1";', 'const PRO_ON = () => true;'),
+             ('const LOT_TO_MAIN = false;', 'const LOT_TO_MAIN = true;'),
+             ('<p class="sub" id="blNote" style="margin-top:10px;display:none">', '<p class="sub" style="margin-top:10px">'),
+             ('<a href="buying-log/" class="navlink" id="blNav" style="display:none">', '<a href="buying-log/" class="navlink">'),
+             ('(it starts <b>gt-</b>)', '(it starts <b>dg-</b>)'),
+             ('placeholder="gt-…"', 'placeholder="dg-…"')]:
+    assert a in s, "main app changed, not found: " + a
+    s = s.replace(a, b)
+s = re.sub(r'/\* Buying log: only shown on phones where it has been switched on.*?\n.*?\n.*?blNote"\)\.style\.display = ""; \}\n', '', s, flags=re.S)
 
 # branding
 s = s.replace('<h1>Gold <span>Trader</span></h1>', '<h1>Dorset Gold <span>&amp; Jewellery</span></h1>')
