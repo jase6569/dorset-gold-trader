@@ -16,6 +16,9 @@ s = src
 # where the hourly data comes from (the main app, same site)
 s = s.replace('fetchJSON("data.json?', 'fetchJSON("../gold-sell-timer/data.json?')
 s = s.replace('fetchJSON("news.json?', 'fetchJSON("../gold-sell-timer/news.json?')
+s = s.replace('const MM_URL = "mastermelt.json";', 'const MM_URL = "../gold-sell-timer/mastermelt.json";')
+# Mike may use a different refiner, so his app starts on his own %; he can switch to Mastermelt's prices
+s = s.replace('const REFINER_DEFAULT = "mastermelt";', 'const REFINER_DEFAULT = "own";')
 
 # branding
 s = s.replace('<h1>Gold <span>Trader</span></h1>', '<h1>Dorset Gold <span>&amp; Jewellery</span></h1>')
