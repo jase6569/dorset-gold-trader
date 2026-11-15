@@ -907,7 +907,7 @@ function renderNews(){
 /* =============== refiner: Mastermelt prices =============== */
 // Mastermelt publishes its trade counter buy prices once a day; the hourly job copies them to mastermelt.json.
 // With Mastermelt selected, every "what you'd receive" figure uses Mastermelt's price, so it matches their app.
-const REFINER_DEFAULT = "own";
+const REFINER_DEFAULT = "mastermelt";
 const MM_URL = "../gold-sell-timer/mastermelt.json";
 let mm = null;
 function refinerMode(){ return store.get("refiner") || REFINER_DEFAULT; }
