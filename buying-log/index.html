@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d0d0d">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" href="icons/favicon.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Buy Log">
-<title>Dorset Gold &amp; Jewellery · Gold Buying Log</title>
+<title>Dorset Gold &amp; Jewellery · Buying Log</title>
 <style>
   :root{
     --navy:#0d0d0d; --navy2:#1c1a16; --gold:#d4a62a; --gold2:#f0d27a;
@@ -23,6 +23,7 @@
   header h1{font-size:17px;margin:0;font-weight:700;letter-spacing:.2px}
   header small{display:block;font-weight:400;color:#cfc4a4;font-size:12px}
   header .spacer{flex:1}
+  header .back{color:var(--gold2);text-decoration:none;font-size:34px;line-height:1;padding:0 4px 4px 0}
   header button{background:transparent;border:1px solid #6b5a2a;color:#fff;border-radius:8px;padding:6px 10px;font-size:13px}
   nav{display:flex;background:var(--navy2);position:sticky;top:calc(60px + env(safe-area-inset-top));z-index:9}
   nav button{flex:1;background:none;border:0;color:#cfc4a4;padding:11px 4px;font-size:14px;border-bottom:3px solid transparent}
@@ -117,7 +118,7 @@
 <body>
 
 <div id="lock" class="lock hidden">
-  <img src="icons/logo-160.png" alt="Dorset Gold &amp; Jewellery" style="width:140px;height:140px;border-radius:50%">
+  <img src="../logo.png" alt="Dorset Gold &amp; Jewellery" style="width:140px;height:140px;border-radius:50%">
   <h2 style="margin:14px 0 0">Gold Buying Log</h2>
   <div id="lockMsg" style="color:#cfc4a4;font-size:14px;margin-top:6px">Enter PIN</div>
   <input id="pinIn" type="password" inputmode="numeric" maxlength="8" autocomplete="off">
@@ -125,8 +126,9 @@
 </div>
 
 <header>
-  <img class="logo" src="icons/logo-160.png" alt="">
-  <div><h1>Gold Buying Log<small>Dorset Gold &amp; Jewellery</small></h1></div>
+  <a href="../" class="back" aria-label="Back to Gold Trader">‹</a>
+  <img class="logo" src="../logo.png" alt="">
+  <div><h1>Buying Log<small>Dorset Gold &amp; Jewellery</small></h1></div>
   <div class="spacer"></div>
   <button id="lockBtn" title="Lock">Lock</button>
 </header>
@@ -333,7 +335,8 @@
 'use strict';
 
 /* ---------- storage (IndexedDB) ---------- */
-const DB_NAME = 'dj-gold-buylog', STORE = 'records';
+const CFG = { biz:'Dorset Gold & Jewellery', prefix:'DG', db:'dg-buylog', stockKey:'dg:stock' };
+const DB_NAME = CFG.db, STORE = 'records';
 let db;
 function openDB(){
   return new Promise((res, rej) => {
@@ -384,8 +387,31 @@ function compress(file, max=1400, q=0.8){
 }
 function viewImage(src){ const v=document.createElement('div'); v.className='viewer'; v.innerHTML=`<img src="${src}">`; v.onclick=()=>v.remove(); document.body.appendChild(v); }
 
+/* ---------- link to Gold Trader "My gold" ---------- */
+const FINENESS = {'9ct (375)':'0.375','14ct (585)':'0.585','18ct (750)':'0.75','22ct (916)':'0.916','24ct (999)':'0.999'};
+const isGold = it => it.metal === 'Gold';
+function myGold(){ try { return JSON.parse(localStorage.getItem(CFG.stockKey) || '[]'); } catch(e){ return []; } }
+function saveMyGold(a){ localStorage.setItem(CFG.stockKey, JSON.stringify(a)); }
+function goldLines(rec){
+  return rec.items.map((it,i) => ({it,i})).filter(x => isGold(x.it) && FINENESS[x.it.purity] && parseFloat(x.it.weight) > 0);
+}
+function addToMyGold(rec){
+  const lines = goldLines(rec); if (!lines.length) return 0;
+  try {
+    const a = myGold().filter(x => !(x.bl && x.bl.startsWith(rec.id + ':')));
+    const d = rec.createdAt.slice(0,10);
+    lines.forEach(({it,i}) => a.push({ w: parseFloat(it.weight), k: FINENESS[it.purity], n: `${it.desc} (${rec.receipt})`, paid: parseFloat(it.price)||0, d, bl: rec.id + ':' + i }));
+    saveMyGold(a);
+    return lines.reduce((t,x)=>t+parseFloat(x.it.weight),0);
+  } catch(e){ toast('Could not add to My gold'); return 0; }
+}
+function removeFromMyGold(rec){
+  try { const a = myGold(), b = a.filter(x => !(x.bl && x.bl.startsWith(rec.id + ':'))); if (b.length !== a.length) saveMyGold(b); return a.length - b.length; } catch(e){ return 0; }
+}
+function inMyGold(rec){ return myGold().filter(x => x.bl && x.bl.startsWith(rec.id + ':')); }
+
 /* ---------- settings ---------- */
-let settings = { biz:'Dorset Gold & Jewellery', addr:'', phone:'', staff:'', loc:'Poole', prefix:'DG', retain:'6', autolock:'5', pinHash:'' };
+let settings = { biz:CFG.biz, addr:'', phone:'', staff:'', loc:'Poole', prefix:CFG.prefix, retain:'6', autolock:'5', pinHash:'' };
 async function loadSettings(){ const s = await kvGet('settings'); if (s) settings = {...settings, ...s}; }
 async function saveSettingsObj(){ await kvSet('settings', settings); }
 
@@ -566,7 +592,7 @@ async function nextReceipt(){
   const d = new Date(), ymd = d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');
   const recs = await allRecords();
   const today = recs.filter(r => r.receipt && r.receipt.includes('-'+ymd+'-')).length;
-  return `${(settings.prefix||'DG').toUpperCase()}-${ymd}-${String(today+1).padStart(3,'0')}`;
+  return `${(settings.prefix||CFG.prefix).toUpperCase()}-${ymd}-${String(today+1).padStart(3,'0')}`;
 }
 
 $('#saveBtn').onclick = async () => {
@@ -581,6 +607,9 @@ $('#saveBtn').onclick = async () => {
   if (!goodItems.length) errs.push('At least one item with a description');
   if (goodItems.some(it => !(parseFloat(it.price)>=0) || it.price==='')) errs.push('A price for every item');
   if (!lotPhotos.length && !goodItems.some(it => it.photos.length)) errs.push('At least one photo of the items bought');
+  goodItems.forEach((it) => { const n = items.indexOf(it) + 1;
+    if (isGold(it) && !FINENESS[it.purity]) errs.push(`The carat for gold item ${n} (test it if unsure), so it can go into My gold`);
+    if (isGold(it) && !(parseFloat(it.weight) > 0)) errs.push(`The weight of gold item ${n}, so it can go into My gold`); });
   if (!v('#f_pay')) errs.push('Payment method');
   if (!$('#f_decl').checked) errs.push('Seller declaration ticked');
   if (!sigDirty) errs.push('Seller signature');
@@ -613,9 +642,10 @@ $('#saveBtn').onclick = async () => {
   };
   await putRecord(rec);
   allCache = [];
+  const grams = addToMyGold(rec);
   if (v('#f_staff')!==settings.staff){ settings.staff = v('#f_staff'); await saveSettingsObj(); }
   resetForm();
-  toast('Saved ' + rec.receipt);
+  toast('Saved ' + rec.receipt + (grams ? ` · ${grams.toFixed(2)}g added to My gold` : ''));
   openRecord(rec.id);
 };
 
@@ -681,7 +711,8 @@ async function openRecord(id){
       ${r.items.map(i=>`<tr><td>${esc(i.desc)}${i.hallmark?`<br><span class="muted">${esc(i.hallmark)}</span>`:''}</td><td>${esc(i.purity)}</td><td>${esc(i.weight)}</td><td>${gbp(i.price)}</td></tr>`).join('')}
       </table>
       <div class="photos">${(r.lotPhotos||[]).map(p=>`<div class="ph"><img src="${p.src}"><span>${esc(p.label)}</span></div>`).join('')}${r.items.flatMap((i,n)=>i.photos.map(p=>`<div class="ph"><img src="${p}"><span>Item ${n+1}</span></div>`)).join('')}</div>
-      <div class="total"><span>Total paid</span><span>${gbp(r.total)}</span></div></div>
+      <div class="total"><span>Total paid</span><span>${gbp(r.total)}</span></div>
+      ${(()=>{ const g = inMyGold(r); return g.length ? `<div class="alert ok">In My gold: ${g.map(x=>x.w+'g '+({'0.375':'9ct','0.585':'14ct','0.75':'18ct','0.916':'22ct','0.999':'24ct'}[x.k]||'')).join(', ')}</div>` : (goldLines(r).length ? `<div class="alert warn">Not in My gold (sent to the refiner or removed there).</div>` : ''); })()}</div>
     <div class="card"><h2>Payment & signature</h2><dl class="kv">
       <dt>Method</dt><dd>${esc(r.payment.method)}</dd>
       <dt>Reference</dt><dd>${esc(r.payment.ref)||'–'}</dd>
@@ -706,15 +737,15 @@ async function openRecord(id){
   $('#addNoteBtn').onclick = async () => { const t=$('#addNote').value.trim(); if(!t) return; r.history=(r.history||[]).concat({at:new Date().toISOString(), what:t}); await putRecord(r); m.remove(); openRecord(r.id); };
   $('#toggleFlag').onclick = async () => { r.flagged=!r.flagged; r.history=(r.history||[]).concat({at:new Date().toISOString(), what:r.flagged?'Flagged as suspicious':'Flag removed'}); await putRecord(r); m.remove(); openRecord(r.id); };
   $('#delRec').onclick = async () => {
-    if (!confirm('Delete this record permanently? This cannot be undone.')) return;
+    if (!confirm('Delete this record permanently? Its gold is also taken out of My gold. This cannot be undone.')) return;
     if (prompt('Type DELETE to confirm')!=='DELETE') return;
-    await delRecord(r.id); allCache=[]; toast('Record deleted'); close();
+    const n = removeFromMyGold(r); await delRecord(r.id); allCache=[]; toast('Record deleted' + (n ? ' and removed from My gold' : '')); close();
   };
 }
 
 /* ---------- printing ---------- */
 function bizHead(title){
-  return `<div class="head"><div style="display:flex;gap:10px;align-items:center"><img src="icons/logo-160.png" style="width:20mm;height:20mm;border:0"><div><h1>${esc(settings.biz||'Dorset Gold & Jewellery')}</h1><div>${esc(settings.addr).replace(/\n/g,', ')}${settings.phone?' · '+esc(settings.phone):''}</div></div></div>
+  return `<div class="head"><div style="display:flex;gap:10px;align-items:center"><img src="../logo.png" style="width:20mm;height:20mm;border:0"><div><h1>${esc(settings.biz||CFG.biz)}</h1><div>${esc(settings.addr).replace(/\n/g,', ')}${settings.phone?' · '+esc(settings.phone):''}</div></div></div>
     <div style="text-align:right"><b>${esc(title)}</b><br>Printed ${fmtDT(new Date().toISOString())}</div></div>`;
 }
 function recordHTML(r){
@@ -786,7 +817,7 @@ function fillSettings(){
 }
 $('#saveSettings').onclick = async () => {
   Object.assign(settings, { biz:$('#s_biz').value.trim(), addr:$('#s_addr').value.trim(), phone:$('#s_phone').value.trim(),
-    staff:$('#s_staff').value.trim(), loc:$('#s_loc').value.trim(), prefix:($('#s_prefix').value.trim()||'DG').toUpperCase(),
+    staff:$('#s_staff').value.trim(), loc:$('#s_loc').value.trim(), prefix:($('#s_prefix').value.trim()||CFG.prefix).toUpperCase(),
     retain:$('#s_retain').value, autolock:$('#s_autolock').value });
   await saveSettingsObj(); toast('Settings saved');
 };
@@ -795,12 +826,12 @@ $('#setPin').onclick = async () => {
   const p = $('#s_pin').value.trim();
   if (!/^\d{4,8}$/.test(p)) return toast('PIN must be 4 to 8 digits');
   if (prompt('Enter the new PIN again to confirm') !== p) return toast('PINs did not match');
-  settings.pinHash = await sha('dj-salt:'+p); await saveSettingsObj(); $('#s_pin').value=''; fillSettings(); toast('PIN set');
+  settings.pinHash = await sha('gl-salt:'+p); await saveSettingsObj(); $('#s_pin').value=''; fillSettings(); toast('PIN set');
 };
 $('#clearPin').onclick = async () => {
   if (!settings.pinHash) return;
   const p = prompt('Enter current PIN to remove it'); if (p===null) return;
-  if (await sha('dj-salt:'+p) !== settings.pinHash) return toast('Wrong PIN');
+  if (await sha('gl-salt:'+p) !== settings.pinHash) return toast('Wrong PIN');
   settings.pinHash=''; await saveSettingsObj(); fillSettings(); toast('PIN removed');
 };
 $('#reviewOld').onclick = () => { const c=retentionCutoff().slice(0,10); $('#q').value=''; $('#q_from').value=''; $('#q_to').value=c; showTab('records'); };
@@ -808,7 +839,7 @@ $('#reviewOld').onclick = () => { const c=retentionCutoff().slice(0,10); $('#q')
 /* ---------- backup / restore ---------- */
 $('#backupBtn').onclick = async () => {
   const recs = await allRecords();
-  const data = { app:'dj-gold-buylog', version:1, exportedAt:new Date().toISOString(), settings:{...settings, pinHash:''}, records:recs };
+  const data = { app:'gold-buylog', version:1, exportedAt:new Date().toISOString(), settings:{...settings, pinHash:''}, records:recs };
   download(new Blob([JSON.stringify(data)],{type:'application/json'}), `gold-buylog-backup-${new Date().toISOString().slice(0,10)}.json`);
   await kvSet('lastBackup', new Date().toISOString()); fillSettings();
 };
@@ -816,7 +847,7 @@ $('#restoreIn').onchange = async e => {
   const f = e.target.files[0]; if (!f) return;
   try {
     const data = JSON.parse(await f.text());
-    if (data.app!=='dj-gold-buylog' || !Array.isArray(data.records)) throw new Error('Not a Gold Buying Log backup');
+    if (data.app!=='gold-buylog' || !Array.isArray(data.records)) throw new Error('Not a Gold Buying Log backup');
     const existing = new Set((await allRecords()).map(r=>r.id));
     const fresh = data.records.filter(r=>!existing.has(r.id));
     if (!confirm(`Backup has ${data.records.length} records. ${fresh.length} are new to this device and will be added. Existing records are kept. Continue?`)) return;
@@ -832,7 +863,7 @@ let lastActive = Date.now();
 function lockNow(){ if (!settings.pinHash) return toast('Set a PIN in Settings first'); $('#lock').classList.remove('hidden'); $('#pinIn').value=''; $('#lockMsg').textContent='Enter PIN'; setTimeout(()=>$('#pinIn').focus(),50); }
 $('#lockBtn').onclick = lockNow;
 async function tryUnlock(){
-  if (await sha('dj-salt:'+$('#pinIn').value) === settings.pinHash){ $('#lock').classList.add('hidden'); lastActive=Date.now(); }
+  if (await sha('gl-salt:'+$('#pinIn').value) === settings.pinHash){ $('#lock').classList.add('hidden'); lastActive=Date.now(); }
   else { $('#lockMsg').textContent='Wrong PIN'; $('#pinIn').value=''; }
 }
 $('#pinGo').onclick = tryUnlock;
