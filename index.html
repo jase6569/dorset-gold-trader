@@ -545,7 +545,8 @@ const store = {
   del(k){ try { localStorage.removeItem(SP + k); } catch(e){} }
 };
 // one-off: copy this app's earlier saved data into its own keys
-try { if (!localStorage.getItem(SP + "migrated")) { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (!k.startsWith(SP) && !k.includes(":") && localStorage.getItem(SP + k) === null) localStorage.setItem(SP + k, localStorage.getItem(k)); } localStorage.setItem(SP + "migrated", "1"); } } catch(e){}
+try { if (!localStorage.getItem(SP + "migrated") && localStorage.getItem("buyingLog") === "1") localStorage.setItem(SP + "migrated", "1");  // a phone with Jase's own app: never copy his data
+  if (!localStorage.getItem(SP + "migrated")) { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (!k.startsWith(SP) && !k.includes(":") && localStorage.getItem(SP + k) === null) localStorage.setItem(SP + k, localStorage.getItem(k)); } localStorage.setItem(SP + "migrated", "1"); } } catch(e){}
 const median = a => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m-1] + s[m]) / 2; };
 const quant = (a, q) => { const s = [...a].sort((x, y) => x - y), i = (s.length - 1) * q, lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
 
