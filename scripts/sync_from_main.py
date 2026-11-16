@@ -39,7 +39,7 @@ for a, b in [('const PRO_ON = () => store.get("buyingLog") === "1";', 'const PRO
              ('placeholder="gt-…"', 'placeholder="dg-…"')]:
     assert a in s, "main app changed, not found: " + a
     s = s.replace(a, b)
-s = re.sub(r'/\* Buying log: only shown on phones where it has been switched on.*?\n.*?\n.*?blNote"\)\.style\.display = ""; \}\n', '', s, flags=re.S)
+s = re.sub(r'/\* Buying log: only shown on phones where it has been switched on[^\n]*\n[^\n]*\nif \(store\.get\("buyingLog"\) === "1"\)[^\n]*\n', '', s, flags=re.S)
 
 # branding
 s = s.replace('<h1>Gold <span>Trader</span></h1>', '<h1>Dorset Gold <span>&amp; Jewellery</span></h1>')
