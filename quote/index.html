@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#110b07">
+<title>Free gold quote from your photos · Dorset Gold &amp; Jewellery</title>
+<meta name="description" content="Send a few photos of your gold jewellery, coins or scrap and get a free rough price in about a minute, based on today's gold price. Free home valuations across Dorset from Dorset Gold &amp; Jewellery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#110b07; --ink:#1b120c; --cream:#f4ede1; --paper:#faf7f1; --white:#fff;
+    --gold:#cdaa5c; --gold-lt:#d9bc77; --stone:#d3c7b4; --taupe:#bfb19c; --muted:#6f6254; --brown:#54473b;
+    --ok:#2f7a55; --bad:#b0412f; --warn:#a8741e;
+    --serif:"Playfair Display",Georgia,serif; --sans:Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans)}
+  body{padding-bottom:env(safe-area-inset-bottom)}
+  .strip{background:var(--espresso);color:var(--taupe);font-size:10px;letter-spacing:2.4px;text-transform:uppercase;text-align:center;padding:8px 12px;border-bottom:1px solid #2a1e15}
+  .hero{background:radial-gradient(120% 90% at 85% 10%,#3a2615 0%,var(--espresso) 60%);color:var(--cream);padding:18px 18px 34px}
+  .bar{max-width:640px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .mark{color:var(--white);text-decoration:none;line-height:1;text-align:center}
+  .mark b{display:block;font-weight:700;font-size:17px;letter-spacing:1.4px}
+  .mark b span{color:var(--gold)}
+  .mark small{display:flex;align-items:center;gap:6px;justify-content:center;font-size:8.5px;letter-spacing:1.6px;margin-top:4px;color:var(--cream)}
+  .mark small:before,.mark small:after{content:"";height:1px;width:14px;background:var(--gold)}
+  .call{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(244,237,225,.35);color:var(--cream);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;padding:10px 12px;border-radius:2px;white-space:nowrap}
+  .intro{max-width:640px;margin:30px auto 0}
+  .eyebrow{color:var(--gold-lt);font-size:11px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase;margin:0 0 10px}
+  h1{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.15;margin:0 0 12px;color:var(--white)}
+  h1 em{color:var(--gold-lt);font-style:normal}
+  .lead{margin:0;color:var(--stone);font-size:15px}
+  main{padding:0 14px;max-width:640px;margin:-18px auto 0;position:relative}
+  .card{background:var(--white);border:1px solid #ece4d6;border-top:2px solid var(--gold);border-radius:2px;padding:20px 18px;margin:0 0 16px;box-shadow:0 10px 30px rgba(27,18,12,.08)}
+  .card h2{font-family:var(--serif);font-weight:500;font-size:22px;margin:0 0 4px;color:var(--ink)}
+  .step{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;margin:0 0 4px}
+  .muted{color:var(--muted);font-size:13px}
+  label{display:block;font-weight:600;font-size:14px;margin:16px 0 6px}
+  label .muted{font-weight:400}
+  input[type=text],input[type=tel],input[type=number],textarea{width:100%;padding:12px;border-radius:2px;border:1px solid var(--stone);background:var(--paper);color:var(--ink);font:inherit;font-size:16px}
+  input:focus,textarea:focus{outline:2px solid var(--gold);border-color:transparent;background:var(--white)}
+  textarea{min-height:72px;resize:vertical}
+  .btn{display:block;width:100%;margin-top:18px;padding:16px;border:0;border-radius:2px;background:var(--gold);color:var(--ink);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;line-height:1;cursor:pointer}
+  .btn:hover{background:var(--gold-lt)}
+  .btn:disabled{opacity:.5;cursor:default}
+  .btn.dark{background:var(--ink);color:var(--cream)}
+  .add{display:flex;align-items:center;justify-content:center;gap:10px;padding:24px;border:1px dashed var(--taupe);background:var(--paper);border-radius:2px;color:var(--ink);font-weight:600;cursor:pointer;text-align:center;margin-top:12px}
+  .add input{display:none}
+  .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+  .thumbs div{position:relative;aspect-ratio:1;border-radius:2px;overflow:hidden;background:var(--cream)}
+  .thumbs img{width:100%;height:100%;object-fit:cover}
+  .thumbs button{position:absolute;top:4px;right:4px;width:24px;height:24px;border-radius:50%;border:0;background:rgba(17,11,7,.8);color:#fff;font-size:15px;line-height:24px;padding:0}
+  .tips{margin:12px 0 0;padding-left:20px;color:var(--muted);font-size:14px}
+  .range{font-family:var(--serif);font-size:42px;font-weight:500;line-height:1.1;color:var(--ink);margin:6px 0 10px}
+  .range em{font-style:normal;color:var(--gold)}
+  .items{margin:14px 0 0;border-top:1px solid #ece4d6}
+  .item{padding:11px 0;border-bottom:1px solid #ece4d6}
+  .item .row{display:flex;justify-content:space-between;gap:12px}
+  .item b{font-weight:600}
+  .item .v{white-space:nowrap;font-weight:700}
+  .item .n{color:var(--muted);font-size:13px;margin-top:2px}
+  .warn{background:#fbf3e2;border-left:3px solid var(--warn);padding:10px 12px;margin-top:12px;font-size:14px}
+  .err{background:#fbecea;border-left:3px solid var(--bad);padding:10px 12px;margin-top:12px;font-size:14px}
+  .ok{background:#eef6f0;border-left:3px solid var(--ok);padding:14px;font-size:15px}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(27,18,12,.3);border-top-color:var(--ink);border-radius:50%;animation:s .8s linear infinite;vertical-align:-3px;margin-right:8px}
+  @keyframes s{to{transform:rotate(360deg)}}
+  .demo{background:var(--gold);color:var(--ink);text-align:center;font-size:12px;font-weight:600;padding:6px}
+  footer{background:var(--espresso);color:var(--taupe);margin-top:28px;padding:26px 18px calc(26px + env(safe-area-inset-bottom));font-size:12px}
+  footer > div{max-width:640px;margin:0 auto}
+  footer a{color:var(--gold-lt)}
+  .shop{font-size:14px;color:var(--cream);margin:0 0 10px}
+</style>
+</head>
+<body>
+<div class="demo" id="demoBar" style="display:none">Demo mode: the quote below is a made-up example</div>
+<div class="strip">Gold · Silver · Watches · Jewellery · Coins</div>
+<div class="hero">
+  <div class="bar">
+    <a class="mark" href="https://dorsetgoldandjewellery.co.uk/"><b>DORSET <span>GOLD</span></b><small>&amp; JEWELLERY</small></a>
+    <a class="call" id="callTop" href="tel:+441202117896">📞 01202 117896</a>
+  </div>
+  <div class="intro">
+    <p class="eyebrow">Free photo quote</p>
+    <h1>What's your gold worth? <em>Send us a photo.</em></h1>
+    <p class="lead">Take a few photos of your gold jewellery, coins or broken bits and we'll give you a rough price in about a minute. It's free and there's no obligation to sell.</p>
+  </div>
+</div>
+
+<main>
+  <section class="card" id="stepPhotos">
+    <p class="step">Step 1</p>
+    <h2>Your photos</h2>
+    <label class="add" id="addBtn">
+      <input type="file" id="file" accept="image/*" multiple>
+      <span>📷 Add photos (up to 4)</span>
+    </label>
+    <div class="thumbs" id="thumbs"></div>
+    <ul class="tips">
+      <li>Lay everything flat on a plain surface, ideally near a window.</li>
+      <li>Get close enough to see any hallmarks, the tiny stamped numbers like 375, 750 or 916.</li>
+      <li>A coin or your hand in the shot helps us judge the size.</li>
+    </ul>
+
+    <label for="weight">Weight of the jewellery in grams <span class="muted">(optional, leave coins out)</span></label>
+    <input type="number" id="weight" inputmode="decimal" min="0" step="0.1" placeholder="Kitchen scales are fine">
+
+    <label for="desc">Anything we should know? <span class="muted">(optional)</span></label>
+    <textarea id="desc" maxlength="300" placeholder="For example: my nan's wedding ring and a broken chain"></textarea>
+
+    <button class="btn" id="go" disabled>Get my quote</button>
+    <div id="qErr"></div>
+  </section>
+
+  <section class="card" id="result" style="display:none"></section>
+
+  <section class="card" id="stepLead" style="display:none">
+    <p class="step">Step 2</p>
+    <h2>Happy with that?</h2>
+    <p style="margin-top:0">Leave your number and we'll call you to book a free home visit. We test and weigh everything in front of you at your kitchen table, and you decide there and then whether to sell.</p>
+    <label for="name">Your name</label>
+    <input type="text" id="name" autocomplete="name" maxlength="60">
+    <label for="phone">Phone number</label>
+    <input type="tel" id="phone" autocomplete="tel" maxlength="20" placeholder="07...">
+    <label for="when">Best time to call <span class="muted">(optional)</span></label>
+    <input type="text" id="when" maxlength="60" placeholder="For example: weekday mornings">
+    <label for="msg">Message <span class="muted">(optional)</span></label>
+    <textarea id="msg" maxlength="400" placeholder="Your town or postcode helps us plan the visit"></textarea>
+    <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input type="text" id="website" tabindex="-1" autocomplete="off"></div>
+    <p class="muted">Your photos, quote and details go to Dorset Gold &amp; Jewellery so we can call you back. We don't use them for anything else. See our <a href="https://dorsetgoldandjewellery.co.uk/privacy" style="color:var(--ink)">privacy policy</a>.</p>
+    <button class="btn" id="send">Ask us to call me</button>
+    <div id="lErr"></div>
+  </section>
+
+  <section class="card" id="done" style="display:none"></section>
+</main>
+
+<footer><div>
+  <div id="shop"></div>
+  <p>Quotes use today's trade gold price and are a guide only. The final price depends on testing and weighing your items at your visit. You'll need photo ID to sell, because the law asks us to record it for every purchase.</p>
+</div></footer>
+
+<script>
+/* ======== settings: fill these in ======== */
+// The quote Worker's address (see quote-worker/README.md). Leave empty to run the page in demo mode.
+const QUOTE_URL = "";
+// Shop details shown at the bottom. Leave any of them empty to hide it.
+const SHOP = {phone: "01202 117896", address: "", hours: ""};
+/* ========================================= */
+
+const $ = id => document.getElementById(id);
+const DEMO = !QUOTE_URL || new URLSearchParams(location.search).has("demo");
+const money = v => "£" + Math.round(v).toLocaleString("en-GB");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+let photos = [], quote = null, busy = false;
+
+if (DEMO) $("demoBar").style.display = "";
+(function shop(){
+  const p = [];
+  if (SHOP.phone) p.push(`Call us on <a href="tel:${SHOP.phone.replace(/\s/g, "")}">${esc(SHOP.phone)}</a> or <a href="https://dorsetgoldandjewellery.co.uk/#book">book a free home visit</a>`);
+  if (SHOP.address) p.push(esc(SHOP.address));
+  if (SHOP.hours) p.push(esc(SHOP.hours));
+  $("shop").innerHTML = p.length ? `<p class="shop">${p.join(" · ")}</p>` : "";
+})();
+
+// Shrink each photo on the phone before sending: quicker on mobile data, and plenty for reading hallmarks.
+function shrink(file){
+  return new Promise((ok, bad) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const max = 1600, k = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      const data = c.toDataURL("image/jpeg", 0.82);
+      ok({src: data, b64: data.split(",")[1]});
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); bad(new Error("That file isn't a photo we can read.")); };
+    img.src = url;
+  });
+}
+
+$("file").onchange = async e => {
+  const files = [...e.target.files].slice(0, 4 - photos.length);
+  e.target.value = "";
+  for (const f of files){
+    try { photos.push(await shrink(f)); } catch(err){ showErr("qErr", err.message); }
+  }
+  quote = null; render();
+};
+function render(){
+  $("thumbs").innerHTML = photos.map((p, i) => `<div><img src="${p.src}" alt="Photo ${i + 1}"><button aria-label="Remove photo" onclick="photos.splice(${i},1);quote=null;render()">×</button></div>`).join("");
+  $("addBtn").style.display = photos.length >= 4 ? "none" : "";
+  $("addBtn").querySelector("span").textContent = photos.length ? "📷 Add another photo" : "📷 Add photos (up to 4)";
+  $("go").disabled = busy || !photos.length;
+  $("go").innerHTML = busy ? '<span class="spin"></span>Looking at your photos…' : quote ? "Get a new quote" : "Get my quote";
+  if (!quote){ $("result").style.display = "none"; $("stepLead").style.display = "none"; }
+}
+function showErr(id, msg){ $(id).innerHTML = msg ? `<div class="err">${esc(msg)}</div>` : ""; }
+
+async function post(path, body){
+  const r = await fetch(QUOTE_URL.replace(/\/$/, "") + path, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+  let j = {};
+  try { j = await r.json(); } catch(e){}
+  if (!r.ok) throw new Error(j.error || "Something went wrong. Please check your signal and try again.");
+  return j;
+}
+
+$("go").onclick = async () => {
+  busy = true; quote = null; showErr("qErr", ""); render();
+  try {
+    const w = parseFloat($("weight").value);
+    const j = DEMO ? await demoQuote(w) : await post("/quote", {photos: photos.map(p => p.b64), weight_g: w > 0 ? w : null, description: $("desc").value});
+    if (j.retake){ showErr("qErr", "We couldn't see your items clearly. " + j.retake); }
+    else { quote = j; }
+  } catch(e){ showErr("qErr", e.message); }
+  busy = false; render();
+  if (quote) showQuote();
+};
+
+function showQuote(){
+  const q = quote.quote;
+  const priced = q.high > 0;
+  const lines = q.lines.map(l => `<div class="item"><div class="row"><b>${esc(l.desc)}</b><span class="v">${l.low == null ? "" : l.high ? `${money(l.low)} to ${money(l.high)}` : "See note"}</span></div>${l.note ? `<div class="n">${esc(l.note)}</div>` : ""}</div>`).join("");
+  $("result").innerHTML = `<p class="step">Your rough quote</p>
+    ${priced ? `<div class="range"><em>${money(q.low)}</em> to <em>${money(q.high)}</em></div>
+      <p style="margin:0">That's what we'd expect to pay you at today's gold price. We'll confirm the exact figure when we test and weigh everything at your free home visit, which only takes a few minutes.</p>`
+    : `<p style="margin:0">We can't put a price on these from the photos alone. Leave your number below and we'll come out and test them for free.</p>`}
+    <div class="items">${lines}</div>
+    ${q.notes.map(n => `<p class="muted" style="margin:10px 0 0">${esc(n)}</p>`).join("")}
+    ${q.warnings.length ? `<div class="warn">${q.warnings.map(esc).join("<br>")}</div>` : ""}
+    <p class="muted" style="margin:12px 0 0">Reference ${esc(q.id)}. Based on the gold price of ${new Date(q.price_day + "T12:00:00").toLocaleDateString("en-GB", {day: "numeric", month: "long"})}.</p>`;
+  $("result").style.display = ""; $("stepLead").style.display = ""; $("done").style.display = "none";
+  $("result").scrollIntoView({behavior: "smooth", block: "start"});
+}
+
+$("send").onclick = async () => {
+  const name = $("name").value.trim(), phone = $("phone").value.trim();
+  if (!name || phone.replace(/\D/g, "").length < 10){ showErr("lErr", "Please add your name and a phone number we can reach you on."); return; }
+  $("send").disabled = true; $("send").innerHTML = '<span class="spin"></span>Sending…'; showErr("lErr", "");
+  try {
+    const body = {token: quote.token, sig: quote.sig, name, phone, when: $("when").value, message: $("msg").value, website: $("website").value, photos: photos.map(p => p.b64)};
+    const j = DEMO ? await new Promise(r => setTimeout(() => r({ok: true, id: quote.quote.id}), 900)) : await post("/lead", body);
+    $("stepLead").style.display = "none";
+    $("done").innerHTML = `<div class="ok"><b>Thanks ${esc(name.split(" ")[0])}, that's with us.</b><br>We'll give you a call soon${$("when").value ? ` (${esc($("when").value)})` : ""}. Your reference is <b>${esc(j.id)}</b>.<br><br>At your visit, have your items and some photo ID ready, such as a driving licence or passport.</div>`;
+    $("done").style.display = ""; $("done").scrollIntoView({behavior: "smooth", block: "start"});
+  } catch(e){ showErr("lErr", e.message); }
+  $("send").disabled = false; $("send").textContent = "Ask us to call me";
+};
+
+// Demo mode: a made-up answer so the page can be tried before the Worker is set up.
+function demoQuote(w){
+  return new Promise(r => setTimeout(() => r({token: "demo", sig: "demo", quote: {id: "DEMO1234", date: "", price_day: new Date().toISOString().slice(0, 10),
+    low: w > 0 ? 505 : 320, high: w > 0 ? 1020 : 615, notes: w > 0 ? [] : ["Weights are judged from the photos. If you have kitchen scales, add the weight for a tighter figure."], warnings: [],
+    lines: [{desc: "Yellow gold curb chain", low: 250, high: 360, note: "Hallmark read as 375."},
+            {desc: "Ring with no hallmark showing", low: 75, high: 255, note: "No hallmark readable, so this is priced between 9ct and 18ct."},
+            {desc: "Bracelet marked GP", low: 0, high: 0, note: "Looks gold plated, which has very little gold in it."}]}}), 1500));
+}
+render();
+</script>
+</body>
+</html>

@@ -76,3 +76,12 @@ The bot commits fresh data every hour, so always pull before you start:
 ```bash
 git pull
 ```
+
+## Google reviews (Mike's copy only)
+
+The Buy log can ask customers for a Google review. It lives only in this repo's `buying-log/index.html` (plus `buying-log/qrcode.min.js`, MIT licence), not in Jase's or Adam's apps. If the Buy log is ever copied over from gold-sell-timer again, copy the "Google reviews" parts back in or they'll be lost.
+
+* **Settings, Google reviews:** paste the Google review link and edit the message.
+* **Each record:** Show QR code (for the customer to scan at the visit), Ask by text, WhatsApp or email, then "They've left a review". Every step goes in the audit trail.
+* **Records:** shows how many customers have reviewed, and "Show who to ask" lists customers from the last 30 days who haven't been asked.
+* A customer who has already reviewed (matched by phone number or ID number) is never offered another request, and the returning seller notice says whether they've reviewed.
