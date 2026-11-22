@@ -10,6 +10,8 @@ phone and are never shared.
 import re
 import sys
 
+sys.exit("Retired: Mike now uses the shared team app in gold-sell-timer, and this repo just forwards to it.")
+
 src = open(sys.argv[1]).read()
 s = src
 

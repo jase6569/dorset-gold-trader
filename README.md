@@ -1,3 +1,7 @@
+# Moved: Dorset Gold & Jewellery now uses one shared team app
+
+This address now forwards to the shared app at https://jase6569.github.io/gold-sell-timer/, which Jase and Mike both sign into (Team, then Sharing). Data saved on a phone by this old app is brought across when Mike joins the team. Everything below describes the old separate app and is kept for reference only. Don't run `scripts/sync_from_main.py` any more: it would replace the forwarding page.
+
 # Gold Trader · Dorset Gold & Jewellery
 
 A phone app that tells you when to sell gold, using UK prices only.
