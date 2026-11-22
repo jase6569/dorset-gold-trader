@@ -62,6 +62,14 @@ for a, b in cmap.items():
     s = re.sub(re.escape(a), b, s, flags=re.I)
 s = s.replace('rgba(15,14,12,', 'rgba(10,16,32,').replace('rgba(26,24,21,1)', 'rgba(18,26,46,1)')
 
+# Mike's setup checklist at the top of the Guide, with its progress card on the Advice page
+here = __import__("os").path.dirname(__file__)
+SETUP = open(__import__("os").path.join(here, "mike_setup.html")).read()
+SETUP_JS = open(__import__("os").path.join(here, "mike_setup_tail.html")).read()
+HELP = '<section class="page" id="p-help">\n'
+assert HELP in s and s.count("</body>") == 1, "main app changed: update the setup injection in sync_from_main.py"
+s = s.replace(HELP, HELP + SETUP, 1).replace("</body>", SETUP_JS + "</body>", 1)
+
 left = [m for m in ('Dorset Jewellers', 'fetchJSON("data.json', 'fetchJSON("news.json') if m in s]
 if left:
     sys.exit("Not fully converted: " + ", ".join(left))

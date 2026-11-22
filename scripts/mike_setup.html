@@ -1,0 +1,101 @@
+  <!-- MIKE SETUP START (added by scripts/sync_from_main.py from scripts/mike_setup.html; edit it there) -->
+  <div class="card" id="setupGuide" style="border-color:var(--gold)">
+    <h2>Start here: set up your app</h2>
+    <p style="margin-top:0">Do these once, in order, on your iPhone. It takes about 15 minutes. Tick each step as you finish it and the app keeps track for you.</p>
+    <p class="muted" style="margin:0 0 6px" id="setupCount"></p>
+    <div class="setup-bar"><i id="setupBar"></i></div>
+    <p class="muted"><b>Before you start:</b> ask Jase for your <b>alert code</b>. It starts <b>dg-</b> followed by 24 letters and numbers. It's private, so it's never shown in the app. Keep it somewhere safe, like a note on your phone.</p>
+
+    <div class="setup-step" data-s="home">
+      <label class="setup-tick"><input type="checkbox"> <b>1. Put the app on your home screen</b></label>
+      <ol>
+        <li>Open this page in <b>Safari</b> (not Chrome).</li>
+        <li>Tap the <b>Share</b> button at the bottom of the screen (the square with an arrow pointing up).</li>
+        <li>Scroll down and tap <b>Add to Home Screen</b>, then <b>Add</b>.</li>
+        <li>From now on, open the app from the Dorset Gold icon on your home screen.</li>
+      </ol>
+    </div>
+
+    <div class="setup-step" data-s="ntfy">
+      <label class="setup-tick"><input type="checkbox"> <b>2. Turn on the phone alerts</b></label>
+      <ol>
+        <li>Install the free <b>ntfy</b> app: <a style="color:var(--gold2)" href="https://apps.apple.com/app/ntfy/id1625396347">get it from the App Store</a>.</li>
+        <li>Open ntfy. When it asks to send you notifications, tap <b>Allow</b>. This matters: without it the alerts arrive silently.</li>
+        <li>Tap <b>+</b> at the top right.</li>
+        <li>Type your alert code exactly, starting <b>dg-</b>. Leave "Use another server" switched off.</li>
+        <li>Tap <b>Subscribe</b>.</li>
+      </ol>
+    </div>
+
+    <div class="setup-step" data-s="notif">
+      <label class="setup-tick"><input type="checkbox"> <b>3. Make sure the alerts can reach you</b></label>
+      <ol>
+        <li>Open your iPhone's <b>Settings</b>, scroll down to <b>Notifications</b>, then tap <b>ntfy</b>.</li>
+        <li>Check <b>Allow Notifications</b> is on, and Lock Screen, Notification Centre and Banners are all ticked.</li>
+        <li>Turn on <b>Time Sensitive Notifications</b> if you see it, so important alerts get through.</li>
+        <li>If you use <b>Focus</b> or Do Not Disturb, add ntfy to the allowed apps.</li>
+      </ol>
+    </div>
+
+    <div class="setup-step" data-s="test">
+      <label class="setup-tick"><input type="checkbox"> <b>4. Send yourself a test alert</b></label>
+      <p style="margin:6px 0">Type your alert code and tap the button. A test message should pop up on your phone within a few seconds. If it doesn't, go back over steps 2 and 3.</p>
+      <input id="stCode" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="dg-…">
+      <button class="btn" id="stTest" style="margin-top:8px">Send me a test alert</button>
+      <p class="muted" id="stMsg" style="margin:6px 0 0"></p>
+    </div>
+
+    <div class="setup-step" data-s="lots">
+      <label class="setup-tick"><input type="checkbox"> <b>5. Turn on lot alerts</b></label>
+      <ol>
+        <li>Tap <b>My gold</b> in the bottom bar, then the <b>Make money</b> tab.</li>
+        <li>Scroll to <b>Lot alerts</b>, type the same alert code and tap <b>Turn on lot alerts</b>.</li>
+        <li>You'll then get a ping when a batch of gold should go to the refiner, plus a summary of your week every Sunday evening. They arrive in the same ntfy alerts.</li>
+      </ol>
+      <button class="btn ghost" onclick="go('calc')">Open My gold</button>
+    </div>
+
+    <div class="setup-step" data-s="stock">
+      <label class="setup-tick"><input type="checkbox"> <b>6. Tell it about your buying and your stock</b></label>
+      <ol>
+        <li>In <b>My gold</b>, open the <b>Send</b> tab. Under <b>Buying in</b>, enter roughly how many grams you buy in a month, and the most stock you want to hold. Start with <b>2 months</b>.</li>
+        <li>Open the <b>My stock</b> tab and add the gold you're holding now: weight, carat, what you paid and the date. Gold you buy through the Buy log from now on is added for you.</li>
+        <li>Open the <b>Prices</b> tab. It uses Mastermelt's trade counter price unless you change it. If you get a different rate, choose <b>My own %</b> and type it in.</li>
+        <li>Open <b>Make money</b> and set the margin you want to keep (for example 20%). It then shows the most to pay per gram each day.</li>
+      </ol>
+    </div>
+
+    <div class="setup-step" data-s="buylog">
+      <label class="setup-tick"><input type="checkbox"> <b>7. Set up the Buy log</b></label>
+      <ol>
+        <li>Tap <b>Buy log</b> in the bottom bar, then <b>Settings</b>.</li>
+        <li>Fill in your business details: business name, address, phone (01202 117896), your name as the staff member and your usual location. Tap <b>Save settings</b>.</li>
+        <li>Set a <b>PIN</b>. The Buy log holds customers' ID photos, so it needs locking.</li>
+      </ol>
+      <a class="btn ghost" href="buying-log/">Open the Buy log</a>
+    </div>
+
+    <div class="setup-step" data-s="reviews">
+      <label class="setup-tick"><input type="checkbox"> <b>8. Add your Google review link</b></label>
+      <ol>
+        <li>On your phone, search Google for <b>Dorset Gold &amp; Jewellery</b> while signed in to the Google account that manages your business listing.</li>
+        <li>On your business panel, tap <b>Ask for reviews</b> (or <b>Get more reviews</b>) and copy the link. It usually starts https://g.page/r/</li>
+        <li>In the Buy log, open <b>Settings</b>, find <b>Google reviews</b>, paste the link and tap <b>Save</b>.</li>
+        <li>Tap <b>Show my QR code</b> and scan it with another phone to check it opens your review page.</li>
+      </ol>
+      <p class="muted">After each purchase, the record shows a QR code for the customer to scan, or you can ask by text, WhatsApp or email.</p>
+    </div>
+
+    <div class="setup-step" data-s="backup">
+      <label class="setup-tick"><input type="checkbox"> <b>9. Take your first backup</b></label>
+      <ol>
+        <li>In the Buy log, open <b>Settings</b> and tap <b>Back up now</b>.</li>
+        <li>Choose <b>Google Drive</b> (or email it to yourself).</li>
+        <li>Do this every week. Everything lives only on this phone, so if it's lost or reset, the backup is the only copy. The app reminds you after 7 days.</li>
+      </ol>
+    </div>
+
+    <div class="sub">What happens next</div>
+    <p style="margin-top:0">You don't need to keep the app open. It checks gold every hour, day and night, and messages you when the call on your stock changes, plus a summary every Friday evening. Days with no message are normal. If even the Friday summary doesn't arrive, check step 3 again. The rest of this guide explains every page in detail.</p>
+  </div>
+  <!-- MIKE SETUP END -->

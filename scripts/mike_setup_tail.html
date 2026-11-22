@@ -1,0 +1,54 @@
+<!-- MIKE SETUP SCRIPT START (added by scripts/sync_from_main.py from scripts/mike_setup_tail.html) -->
+<style>
+  .setup-bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:4px 0 12px}
+  .setup-bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+  .setup-step{border-top:1px solid var(--line);padding:12px 0 4px}
+  .setup-step ol{margin:8px 0 6px;padding-left:22px}
+  .setup-step li{margin:4px 0}
+  .setup-tick{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:16px}
+  .setup-tick input{width:22px;height:22px;accent-color:var(--gold);flex:none;margin:0}
+  .setup-step.done ol,.setup-step.done p,.setup-step.done .btn,.setup-step.done input[type=text]{display:none}
+  .setup-step.done .setup-tick b{color:var(--muted);text-decoration:line-through}
+</style>
+<script>
+(function(){
+  const steps = [...document.querySelectorAll("#setupGuide .setup-step")];
+  if (!steps.length) return;
+  const KEY = "setupDone";
+  const done = () => { try { return JSON.parse(store.get(KEY) || "[]"); } catch(e){ return []; } };
+  function paint(){
+    const d = done(), n = steps.filter(s => d.includes(s.dataset.s)).length;
+    steps.forEach(s => { const on = d.includes(s.dataset.s); s.classList.toggle("done", on); s.querySelector(".setup-tick input").checked = on; });
+    document.getElementById("setupCount").textContent = n === steps.length ? "All done. You're set up." : `${n} of ${steps.length} steps done.`;
+    document.getElementById("setupBar").style.width = (n / steps.length * 100) + "%";
+    const w = document.getElementById("welcome");
+    if (w){
+      w.innerHTML = n === steps.length ? "" : `<h2>Finish setting up your app</h2>
+        <p style="margin:0 0 6px">${n ? `${n} of ${steps.length} steps done.` : "About 15 minutes, once."} Turn on your phone alerts so the app can tell you when to send gold to the refiner.</p>
+        <div class="setup-bar"><i style="width:${n / steps.length * 100}%"></i></div>
+        <button class="btn" style="margin-top:0" onclick="go('help');document.getElementById('setupGuide').scrollIntoView()">${n ? "Carry on setting up" : "Start setting up"}</button>`;
+      w.style.display = n === steps.length ? "none" : "block";
+    }
+  }
+  steps.forEach(s => s.querySelector(".setup-tick input").addEventListener("change", e => {
+    const d = done().filter(x => x !== s.dataset.s);
+    if (e.target.checked) d.push(s.dataset.s);
+    store.set(KEY, JSON.stringify(d)); paint();
+  }));
+  // Test alert: posts straight to the code the person types. The code stays on this phone.
+  const code = document.getElementById("stCode"), msg = document.getElementById("stMsg");
+  if (store.get("lotCode")) code.value = store.get("lotCode");
+  document.getElementById("stTest").onclick = async () => {
+    const c = code.value.trim();
+    if (!/^(dg|gt)-[0-9a-f]{24}$/.test(c)){ msg.textContent = "That doesn't look right. Your alert code starts dg- followed by 24 letters and numbers. Check you've typed all of it."; return; }
+    msg.textContent = "Sending…";
+    try {
+      const r = await fetch("https://ntfy.sh/" + c, {method: "POST", body: "This is a test from your Gold Trader app. If you can see this, your alerts are working.", headers: {Title: "Test alert: it works", Tags: "white_check_mark"}});
+      if (!r.ok) throw new Error(r.status);
+      msg.innerHTML = "Sent. If it popped up on your phone, tick this step. If not, check you subscribed to exactly this code in ntfy (step 2) and that notifications are allowed (step 3).";
+    } catch(e){ msg.textContent = "Couldn't send just now. Check your signal and try again."; }
+  };
+  paint();
+})();
+</script>
+<!-- MIKE SETUP SCRIPT END -->
