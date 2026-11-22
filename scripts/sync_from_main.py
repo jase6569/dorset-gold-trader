@@ -44,6 +44,7 @@ s = re.sub(r'/\* Buying log: only shown on phones where it has been switched on[
 # branding
 s = s.replace('<h1>Gold <span>Trader</span></h1>', '<h1>Dorset Gold <span>&amp; Jewellery</span></h1>')
 s = s.replace('Dorset Jewellers · when to sell gold · UK, live', 'Gold Trader · when to sell gold · UK, live')
+s = s.replace('Dorset Gold &amp; Jewellery · when to sell gold · UK, live', 'Gold Trader · when to sell gold · UK, live')   # main app's name since Nov 2026
 s = s.replace('<title>Gold Trader</title>', '<title>Dorset Gold &amp; Jewellery · Gold Trader</title>')
 s = s.replace('<meta name="apple-mobile-web-app-title" content="Gold Trader">', '<meta name="apple-mobile-web-app-title" content="Dorset Gold">')
 s = s.replace('Dorset Jewellers icon', 'Dorset Gold &amp; Jewellery icon')
